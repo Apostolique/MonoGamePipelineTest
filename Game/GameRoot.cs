@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Apos.Input;
+using Apos.Shapes;
 using System.Text.Json.Serialization.Metadata;
 
 namespace GameProject {
@@ -38,6 +39,7 @@ namespace GameProject {
 
         protected override void LoadContent() {
             _s = new SpriteBatch(GraphicsDevice);
+            _sb = new ShapeBatch(GraphicsDevice, Content);
 
             // TODO: use this.Content to load your game content here
             InputHelper.Setup(this);
@@ -75,7 +77,9 @@ namespace GameProject {
         protected override void Draw(GameTime gameTime) {
             GraphicsDevice.Clear(Color.Black);
 
-            // TODO: Add your drawing code here
+            _sb.Begin();
+            _sb.DrawCircle(new Vector2(100f, 100f), 50f, TWColor.Red500, TWColor.White, 10f);
+            _sb.End();
 
             base.Draw(gameTime);
         }
@@ -177,6 +181,7 @@ namespace GameProject {
 
         readonly GraphicsDeviceManager _graphics;
         SpriteBatch _s;
+        ShapeBatch _sb;
 
         readonly Settings _settings;
 
