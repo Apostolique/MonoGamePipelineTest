@@ -30,6 +30,8 @@ jobs:
         echo "TAGVERSION=${TAGVERSION:1}" >> $GITHUB_ENV
     - name: Setup Wine
       run: |
+        sudo add-apt-repository universe
+        sudo apt update
         sudo apt install wget curl p7zip-full wine64
         wget -qO- https://raw.githubusercontent.com/MonoGame/monogame.github.io/9cd8a3b4e27ac03fe993f507a1da7fe70eb1eb8d/website/content/public/downloads/winesetup/net8_mgfxc_wine_setup.sh | sh
     - name: Build Windows
