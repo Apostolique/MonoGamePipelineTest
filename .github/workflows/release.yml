@@ -32,11 +32,12 @@ jobs:
       run: |
         sudo add-apt-repository universe
         sudo apt update
-    - name: Setup Wine
+    - name: Setup packages
     - uses: awalsh128/cache-apt-pkgs-action@v1
       with:
         packages: wget curl p7zip-full wine64
         version: 1.0
+    - name: Setup Wine
       run: wget -qO- https://raw.githubusercontent.com/MonoGame/monogame.github.io/refs/heads/main/website/content/public/downloads/winesetup/net9_mgfxc_wine_setup.sh | sh
     - name: Build Windows
       run: dotnet publish ${{ env.PROJECT_PATH }} -r win-x64 -c Release --self-contained -p:Version=${{ env.TAGVERSION }} --output artifacts/windows
