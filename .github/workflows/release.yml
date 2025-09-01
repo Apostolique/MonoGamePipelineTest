@@ -32,8 +32,8 @@ jobs:
       run: |
         sudo add-apt-repository universe
         sudo apt update
-        sudo apt install wget curl p7zip-full wine64
-        wget -qO- https://raw.githubusercontent.com/MonoGame/monogame.github.io/refs/heads/main/website/content/public/downloads/winesetup/net9_mgfxc_wine_setup.sh | sh
+        sudo apt install curl p7zip-full wine64
+        curl -fsSL https://raw.githubusercontent.com/MonoGame/monogame.github.io/refs/heads/main/website/content/public/downloads/winesetup/net9_mgfxc_wine_setup.sh | sh
     - name: Build Windows
       run: dotnet publish ${{ env.PROJECT_PATH }} -r win-x64 -c Release --self-contained -p:Version=${{ env.TAGVERSION }} --output artifacts/windows
     - name: Build Osx
